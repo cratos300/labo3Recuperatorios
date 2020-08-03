@@ -1,0 +1,18 @@
+
+.oculto{
+    display: none;
+}
+.visible{
+    display: inline;
+}
+.panta
+{
+    display: flex;
+}
+.dada
+{
+    background-color: blue;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+}
