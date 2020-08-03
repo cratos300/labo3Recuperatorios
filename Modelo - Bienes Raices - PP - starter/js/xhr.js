@@ -1,6 +1,6 @@
 import {Spinner,HabilitarCheckbox,HabiSelec,manejarINICIO,manejadorCheckbox,TraerBaseLocalStorage,GuardarBaseLocalStorage,DesabilitarCheckbox,FiltrarTransaccion,CargarFormulario,frm,agregar} from "./index.js"
 import {crearTabla} from "./tableheper.js"
-import {anu} from "./anuncios_autos.js"
+import anu from "./datos.js"
 export function alta(nuevoAnuncio) 
 { 
     let contador1 = 0;

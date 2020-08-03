@@ -1,7 +1,6 @@
-import {anu} from "./anuncios_autos.js"
+import anu from "./datos.js"
 import {Listar2,alta,baja,modificacion} from "./xhr.js"
 import {crearTabla} from "./tableheper.js"
-
 export let frm;
 let eliminar;
 let modificar;
@@ -110,6 +109,8 @@ export function crearAnuncio(frm) {
                 break;
         }
     }
+    let da = new Mascota("asdsa","asda","asda","asdasd",2,"dasd","asdsa","asdsa","asda");
+    console.log(da);
     return new anu(id, titulo, transaccion, descripcion, precio, baños, estacionamiento, dormitorio);
 
 }
