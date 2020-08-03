@@ -1,11 +1,11 @@
 import {anu} from "./anuncios_autos.js"
-import {Listar2,alta} from "./xhr.js"
+import {Listar2,alta,baja,modificacion} from "./xhr.js"
 import {crearTabla} from "./tableheper.js"
 
-let frm;
+export let frm;
 let eliminar;
 let modificar;
-let agregar;
+export let agregar;
 let cancelar;
 let selector;
 let bandera  = false;
@@ -316,7 +316,7 @@ export function manejarINICIO(datos) {
 export function SeterLocalStorage()
 {
     let check = document.getElementsByTagName("input");
-    arr = Array()
+    let arr = Array()
     for(let i =0; i<check.length;i++)
     {
         if(check[i].type == "checkbox")

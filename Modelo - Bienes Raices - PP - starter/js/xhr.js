@@ -1,5 +1,6 @@
-import {Spinner,HabilitarCheckbox,HabiSelec,manejarINICIO,manejadorCheckbox,TraerBaseLocalStorage,GuardarBaseLocalStorage,DesabilitarCheckbox,FiltrarTransaccion} from "./index.js"
+import {Spinner,HabilitarCheckbox,HabiSelec,manejarINICIO,manejadorCheckbox,TraerBaseLocalStorage,GuardarBaseLocalStorage,DesabilitarCheckbox,FiltrarTransaccion,CargarFormulario,frm,agregar} from "./index.js"
 import {crearTabla} from "./tableheper.js"
+import {anu} from "./anuncios_autos.js"
 export function alta(nuevoAnuncio) 
 { 
     let contador1 = 0;
@@ -29,9 +30,9 @@ export function alta(nuevoAnuncio)
  export function baja(nuevoAnuncio) 
 { 
     console.log(nuevoAnuncio);
-    auxArray = Array();
+    let auxArray = Array();
     let datos = TraerBaseLocalStorage()
-    for(i=0;i<datos.length;i++)
+    for(let i=0;i<datos.length;i++)
     {
         if(datos[i].id == nuevoAnuncio.id)
         {
@@ -48,9 +49,9 @@ export function alta(nuevoAnuncio)
  export function modificacion(nuevoAnuncio) 
 { 
     console.log(nuevoAnuncio);
-    auxArray = Array();
+    let auxArray = Array();
     let datos = TraerBaseLocalStorage()
-    for(i=0;i<datos.length;i++)
+    for(let i=0;i<datos.length;i++)
     {
         if(datos[i].id == nuevoAnuncio.id)
         {
