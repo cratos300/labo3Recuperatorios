@@ -10,4 +10,20 @@ export default class anu {
         this.potencia = potencia;
     }
 }
+var enumTransacciones;
+(function (enumTransacciones) {
+    enumTransacciones["Todos"] = "Todos";
+    enumTransacciones["Alquiler"] = "Alquiler";
+    enumTransacciones["Ventas"] = "Venta";
+    enumTransacciones["Permutar"] = "Permutar";
+})(enumTransacciones || (enumTransacciones = {}));
+export function CargarSelector() {
+    let sltransaccion = document.getElementById("seleccionado");
+    for (let item in enumTransacciones) {
+        let option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
+        sltransaccion.appendChild(option);
+    }
+}
 //# sourceMappingURL=datos.js.map

@@ -8,8 +8,7 @@ export default class anu {
     public kms:string;
     public potencia:string;
 
-    constructor(id:string,titulo:string,transaccion:string,descripcion:string,precio:string
-        ,puertas:string,kms:string,potencia:string) {
+    constructor(id:string,titulo:string,transaccion:string,descripcion:string,precio:string,puertas:string,kms:string,potencia:string) {
         this.id = id;
         this.titulo = titulo;
         this.transaccion = transaccion;
@@ -18,5 +17,23 @@ export default class anu {
         this.puertas = puertas;
         this.kms = kms;
         this.potencia = potencia;
+    }  
+}
+enum enumTransacciones
+{
+    Todos = "Todos",
+    Alquiler = "Alquiler",
+    Ventas = "Venta",
+    Permutar = "Permutar"
+}
+export function CargarSelector()
+{
+    let sltransaccion = document.getElementById("seleccionado");
+    for(let item in enumTransacciones)
+    {
+        let option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
+        sltransaccion.appendChild(option);
     }
 }

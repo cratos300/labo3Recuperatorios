@@ -1,6 +1,7 @@
-import anu from "./datos.js"
 import {Listar2,alta,baja,modificacion} from "./xhr.js"
 import {crearTabla} from "./tableheper.js"
+import anu from "./datos.js"
+import {CargarSelector} from "./datos.js"
 export let frm;
 let eliminar;
 let modificar;
@@ -12,6 +13,7 @@ let contador1 = 0;
 let contttt = 0;
 $(inicializarManejadores);
 function inicializarManejadores() { 
+    CargarSelector();
     let revi = TraerBaseLocalStorage()
     if(revi == null)
     {
@@ -109,12 +111,13 @@ export function crearAnuncio(frm) {
                 break;
         }
     }
-    let da = new Mascota("asdsa","asda","asda","asdasd",2,"dasd","asdsa","asdsa","asda");
-    console.log(da);
-    return new anu(id, titulo, transaccion, descripcion, precio, baños, estacionamiento, dormitorio);
+    let dar = new anu(id, titulo, transaccion, descripcion, precio, baños, estacionamiento, dormitorio);
+    console.log(dar);
+    return dar;
 
 }
  export function CargarFormulario(frm, obj) {
+     console.log(obj);
     for (let elemento of frm.elements) {
         switch (elemento.name) {
             case "frmTitulo":
@@ -127,13 +130,13 @@ export function crearAnuncio(frm) {
                 elemento.value = obj.precio;
                 break;
             case "frmNum_baño":
-                elemento.value = parseInt(obj.num_puertas);
+                elemento.value = obj.puertas;
                 break;
             case "frmNum_estacionamiento":
-                elemento.value = parseInt(obj.num_kms);
+                elemento.value =  obj.kms;
                 break;
             case "frmNum_dormitorio":
-                elemento.value = parseInt(obj.potencia);
+                elemento.value = obj.potencia;
                 break;
             case "tipo":
                 if (obj.transaccion == "Venta") {
@@ -242,10 +245,10 @@ export function Realizar(seleccionados,datos)
             precio = datos.map(dato=>dato.precio);
         }
         else if(seleccionados[i] == "puertas"){
-            puertas = datos.map(dato=>dato.num_puertas);
+            puertas = datos.map(dato=>dato.puertas);
         }
         else if(seleccionados[i] == "kms"){
-            km = datos.map(dato=>dato.num_kms);
+            km = datos.map(dato=>dato.kms);
         }
         else if(seleccionados[i] == "potencia"){
             potencia = datos.map(dato=>dato.potencia);
@@ -281,11 +284,12 @@ export function Realizar(seleccionados,datos)
             }
             if(puertas != null)
             {
-                objetos.num_puertas = puertas[i]
+                objetos.puertas = puertas[i]
             }
             if(km!= null)
             {
-                objetos.num_kms = km[i]
+                objetos.kms = km[i]
+                console.log(objetos.kms);
             }
             if(potencia != null)
             {
@@ -395,8 +399,6 @@ export function HabilitarCheckbox()
 }
 export function FiltrarTransaccion(datos,filtrar)
 {
-   let datii = document.getElementById("frmNum_baño").value;
-   let datii2  = document.getElementById("frmNum_dormitorio").value;
    let todoss;
    let promedio;
    let acumulador = 0;
@@ -560,6 +562,7 @@ export function TraerBaseLocalStorage()
 {
     let dates = localStorage.getItem("datos");
     return JSON.parse(dates);
+    
 }
 
 

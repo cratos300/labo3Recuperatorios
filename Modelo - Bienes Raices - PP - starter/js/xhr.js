@@ -111,11 +111,10 @@ export function Listar2()
 
     // document.getElementById('tabla').appendChild(crearTabla(dati));
        document.getElementById("tabla").innerText = "";
-       let datil = crearTabla(dati)
-       if(datil != "[]" || datil != null )
+       
+       if(dati != "[]" || datil != null )
        {
-           console.log(datil);
-        document.getElementById('tabla').appendChild(crearTabla(datil));
+        document.getElementById('tabla').appendChild(crearTabla(dati));
         HabiSelec();
         let td = document.getElementsByTagName('td');    
         HabilitarCheckbox();
@@ -145,7 +144,6 @@ export function Listar2()
              let anuncio = new anu(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
                  nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
                  nodes[7].textContent);
-                 console.log(anuncio);
                  CargarFormulario(frm,anuncio);
                  eliminar.className = 'visible';
                  eliminar.className = "btn btn-success";
@@ -155,12 +153,10 @@ export function Listar2()
                  cancelar.className = "btn btn-danger";
                  agregar.className = 'oculto';
             });
- 
+            manejadorCheckbox(dati,document.getElementById("seleccionado").value);
      }
        }
        
-    
-    manejadorCheckbox(dati,document.getElementById("seleccionado").value);
     }, 3000);
     
 }
