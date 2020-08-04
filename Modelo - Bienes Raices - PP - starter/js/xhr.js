@@ -1,4 +1,4 @@
-import {Spinner,HabilitarCheckbox,HabiSelec,manejarINICIO,manejadorCheckbox,TraerBaseLocalStorage,GuardarBaseLocalStorage,DesabilitarCheckbox,FiltrarTransaccion,CargarFormulario,frm,agregar, DesaSelec, Primera} from "./index.js"
+import {Spinner,HabilitarCheckbox,HabiSelec,manejarINICIO,manejadorCheckbox,TraerBaseLocalStorage,GuardarBaseLocalStorage,DesabilitarCheckbox,FiltrarTransaccion,CargarFormulario,frm,agregar, DesaSelec, Primera,primero} from "./index.js"
 import {crearTabla} from "./tableheper.js"
 import anu from "./datos.js"
 export function alta(nuevoAnuncio) 
@@ -10,7 +10,6 @@ export function alta(nuevoAnuncio)
        let datiii = Array();
     let siguiente = 1;
     nuevoAnuncio.id = String(siguiente);
-    console.log("pendorcho");
     datiii.push(nuevoAnuncio);
     GuardarBaseLocalStorage(JSON.stringify(datiii));
     Listar2();
@@ -29,14 +28,12 @@ export function alta(nuevoAnuncio)
 }
  export function baja(nuevoAnuncio) 
 { 
-    console.log(nuevoAnuncio);
     let auxArray = Array();
     let datos = TraerBaseLocalStorage()
     for(let i=0;i<datos.length;i++)
     {
         if(datos[i].id == nuevoAnuncio.id)
         {
-            console.log("Encontrado");
         }
         else
         {
@@ -48,7 +45,6 @@ export function alta(nuevoAnuncio)
 }
  export function modificacion(nuevoAnuncio) 
 { 
-    console.log(nuevoAnuncio);
     let auxArray = Array();
     let datos = TraerBaseLocalStorage()
     for(let i=0;i<datos.length;i++)
@@ -157,6 +153,7 @@ export function Listar2()
      }
 
      }
+     primero();
        }
        
     }, 3000);
@@ -192,7 +189,6 @@ export function cik()
                     }
         }
     }
-    console.log(tep);
     return tep;
 
 }

@@ -1,5 +1,4 @@
 export function crearTabla(array) {
-
     let tabi = [];
     if(array != null)
     {

@@ -45,7 +45,6 @@ function inicializarManejadores() {
 
     $("#modificar").on("click", function () {
         let nuevoAnuncio = crearAnuncio(frm);
-        console.log(nuevoAnuncio);
         modificacion(nuevoAnuncio);
         cancelar.className = 'oculto';
         eliminar.className = 'oculto';
@@ -64,6 +63,7 @@ function inicializarManejadores() {
     $("#alta").on("click", manejadorAlta);
 }
 export function manejadoraBorrar(e) {
+    SeterLocalStorage();
     DesabilitarCheckbox(); 
     let nuevoAnuncio = crearAnuncio(frm);
     baja(nuevoAnuncio);
@@ -113,12 +113,10 @@ export function crearAnuncio(frm) {
         }
     }
     let dar = new anu(id, titulo, transaccion, descripcion, precio, baños, estacionamiento, dormitorio);
-    console.log(dar);
     return dar;
 
 }
  export function CargarFormulario(frm, obj) {
-     console.log(obj);
     for (let elemento of frm.elements) {
         switch (elemento.name) {
             case "frmTitulo":
@@ -151,7 +149,6 @@ export function crearAnuncio(frm) {
                 }
                 break;
             case "id":
-                console.log(obj.id);
                 elemento.value = obj.id;
                 break;
             default:
@@ -169,7 +166,6 @@ export function manejadorAlta(e) {
 
     DesabilitarCheckbox(); 
     let nuevoAnuncio = crearAnuncio(frm);
-    console.log(nuevoAnuncio);
     limpiar();
     alta(nuevoAnuncio);
 }
@@ -205,7 +201,7 @@ export function limpiar() {
     for (let i = 0; frm.elements[i]; i++) {
         if (frm.elements[i].type == 'checkbox') {
             frm.elements[i].addEventListener("click", function () {
-                SeterLocalStorage();
+                //SeterLocalStorage();
                 let seleccionados = [];
                 for (let i = 0; frm.elements[i]; i++) {
                     if (frm.elements[i].type == 'checkbox') {
@@ -290,7 +286,7 @@ export function Realizar(seleccionados,datos)
             if(km!= null)
             {
                 objetos.kms = km[i]
-                console.log(objetos.kms);
+                
             }
             if(potencia != null)
             {
@@ -322,18 +318,17 @@ export function manejarINICIO(datos) {
 export function SeterLocalStorage()
 {
     let check = document.getElementsByTagName("input");
-    let arr = Array()
+    let arr = Array();
     for(let i =0; i<check.length;i++)
     {
         if(check[i].type == "checkbox")
         {
             if(check[i].checked == true)
             {
-                arr.push(check[i].value)
+                arr.push(check[i].name)
             }
         }
     }
-    console.log(arr);
     localStorage.setItem("checkbox", arr);
 }
 export function leerLocalStorage()
@@ -413,10 +408,8 @@ export function FiltrarTransaccion(datos,filtrar)
     {   
         let flag = true;
         let respuesta = Array();
-        console.log("dadasdasd2");
          respuesta = datos.filter(elemento => (elemento.transaccion == "Venta"));
          let referencia = document.getElementById("seleccionado");
-         console.log("evento eliminado");
          manejadorCheckbox(respuesta,"Venta");
          document.getElementById("tabla").innerText = "";
          document.getElementById('tabla').appendChild(crearTabla(respuesta));
@@ -551,7 +544,6 @@ export function ContadorCheckbox()
                         }
                     }
                 }
-                console.log(contador);
                 if(contador == 7)
                 {
                     HabiSelec();
@@ -585,4 +577,12 @@ export function Primera()
     return retorno;
 
 }
-
+export function primero() {
+    for (let i = 0; frm.elements[i]; i++) {
+        if (frm.elements[i].type == 'checkbox') {
+            frm.elements[i].addEventListener("click", function () {
+                SeterLocalStorage();
+            })
+        }
+    }
+}
