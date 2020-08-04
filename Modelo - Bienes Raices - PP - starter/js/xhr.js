@@ -1,4 +1,4 @@
-import {Spinner,HabilitarCheckbox,HabiSelec,manejarINICIO,manejadorCheckbox,TraerBaseLocalStorage,GuardarBaseLocalStorage,DesabilitarCheckbox,FiltrarTransaccion,CargarFormulario,frm,agregar} from "./index.js"
+import {Spinner,HabilitarCheckbox,HabiSelec,manejarINICIO,manejadorCheckbox,TraerBaseLocalStorage,GuardarBaseLocalStorage,DesabilitarCheckbox,FiltrarTransaccion,CargarFormulario,frm,agregar, DesaSelec, Primera} from "./index.js"
 import {crearTabla} from "./tableheper.js"
 import anu from "./datos.js"
 export function alta(nuevoAnuncio) 
@@ -114,27 +114,19 @@ export function Listar2()
        
        if(dati != "[]" || datil != null )
        {
+            HabiSelec();
+           
+        
         document.getElementById('tabla').appendChild(crearTabla(dati));
-        HabiSelec();
         let td = document.getElementsByTagName('td');    
         HabilitarCheckbox();
         let referencia = document.getElementById("seleccionado");
         manejarINICIO(dati);
         referencia.addEventListener("change",function()
         {
-            if(this.value != "Todos")
-            {
-                DesabilitarCheckbox();
-            }
-            else
-            {
-                
-                HabilitarCheckbox();
-            }
+             HabilitarCheckbox();
              FiltrarTransaccion(dati,this.value);
         })
-        
-         
         for(let i=0;i<td.length;i++)
         {
          
@@ -155,6 +147,16 @@ export function Listar2()
             });
             manejadorCheckbox(dati,document.getElementById("seleccionado").value);
      }
+     if(Primera() == false)
+     {
+        let tip = cik();
+
+     if(tip != 7)
+     {
+         DesaSelec();
+     }
+
+     }
        }
        
     }, 3000);
@@ -170,4 +172,27 @@ export function TraerIDuLTIMO()
          resultado = dati[i].id;
     }
     return resultado;
+}
+
+export function cik()
+{
+    let tep = 0;
+    let dat = document.getElementsByTagName("input");
+    
+    for(let i = 0; i<dat.length;i++)
+    {
+        if(dat[i].type == "checkbox")
+        {
+                    if(dat[i].type == "checkbox")
+                    {
+                        if (!dat[i].checked) 
+                        {
+                            tep++;
+                        }
+                    }
+        }
+    }
+    console.log(tep);
+    return tep;
+
 }

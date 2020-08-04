@@ -14,7 +14,7 @@ var enumTransacciones;
 (function (enumTransacciones) {
     enumTransacciones["Todos"] = "Todos";
     enumTransacciones["Alquiler"] = "Alquiler";
-    enumTransacciones["Ventas"] = "Venta";
+    enumTransacciones["Venta"] = "Venta";
     enumTransacciones["Permutar"] = "Permutar";
 })(enumTransacciones || (enumTransacciones = {}));
 export function CargarSelector() {

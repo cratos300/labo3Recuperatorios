@@ -10,7 +10,8 @@ let cancelar;
 let selector;
 let bandera  = false;
 let contador1 = 0;
-let contttt = 0;
+export var  baa  =  false;
+export let traican = 0;
 $(inicializarManejadores);
 function inicializarManejadores() { 
     CargarSelector();
@@ -412,7 +413,11 @@ export function FiltrarTransaccion(datos,filtrar)
     {   
         let flag = true;
         let respuesta = Array();
+        console.log("dadasdasd2");
          respuesta = datos.filter(elemento => (elemento.transaccion == "Venta"));
+         let referencia = document.getElementById("seleccionado");
+         console.log("evento eliminado");
+         manejadorCheckbox(respuesta,"Venta");
          document.getElementById("tabla").innerText = "";
          document.getElementById('tabla').appendChild(crearTabla(respuesta));
          acumulador = respuesta.reduce((prev,actual)=>{
@@ -446,6 +451,7 @@ export function FiltrarTransaccion(datos,filtrar)
         let respuesta = Array();
          respuesta = datos.filter(elemento => (elemento.transaccion == "Alquiler"));
          document.getElementById("tabla").innerText = "";
+         manejadorCheckbox(respuesta,"Alquiler");
          document.getElementById('tabla').appendChild(crearTabla(respuesta));
          acumulador = respuesta.reduce((prev,actual)=>{
              return (Number(prev)+Number(actual.precio))}
@@ -479,6 +485,7 @@ export function FiltrarTransaccion(datos,filtrar)
          respuesta = datos.filter(elemento => (elemento.transaccion == "Permutar"));
          document.getElementById("tabla").innerText = "";
          document.getElementById('tabla').appendChild(crearTabla(respuesta));
+         manejadorCheckbox(respuesta,"Permutar");
          acumulador = respuesta.reduce((prev,actual)=>{
              return (Number(prev)+Number(actual.precio))}
              ,0);
@@ -507,6 +514,7 @@ export function FiltrarTransaccion(datos,filtrar)
     else
     {
         todoss = datos;
+        manejadorCheckbox(todoss,"Venta");
         document.getElementById("tabla").innerText = "";
         document.getElementById('tabla').appendChild(crearTabla(datos));
         document.getElementById("promedio").value = "N/A";
@@ -564,5 +572,17 @@ export function TraerBaseLocalStorage()
     return JSON.parse(dates);
     
 }
+export function Primera()
+{
+    let retorno = 0;
+    if (baa == false)
+    {
+        baa = true;
+    }
+    else{
+        retorno = 1;
+    }
+    return retorno;
 
+}
 
