@@ -97,7 +97,6 @@ export function Listar2()
 {   
     document.getElementById("tabla").innerText = "";
     document.getElementById("tabla").appendChild(Spinner());
-    
     setTimeout(function()
     {
     document.getElementById("tabla").innerText = "";
@@ -111,8 +110,6 @@ export function Listar2()
        if(dati != "[]" || datil != null )
        {
             HabiSelec();
-           
-        
         document.getElementById('tabla').appendChild(crearTabla(dati));
         let td = document.getElementsByTagName('td');    
         HabilitarCheckbox();
@@ -125,24 +122,33 @@ export function Listar2()
         })
         for(let i=0;i<td.length;i++)
         {
-         
             td[i].addEventListener('click',function(e){
-             let esa = e.target.parentElement;
-             let nodes = esa.childNodes;
-             let anuncio = new anu(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
-                 nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
-                 nodes[7].textContent);
-                 CargarFormulario(frm,anuncio);
-                 eliminar.className = 'visible';
-                 eliminar.className = "btn btn-success";
-                 modificar.className = 'visible';
-                 modificar.className = "btn btn-primary";
-                 cancelar.className = 'visible';
-                 cancelar.className = "btn btn-danger";
-                 agregar.className = 'oculto';
+                let tin = cik()
+                console.log(tin);
+                if(tin == 7)
+                {
+                    console.log("asda");
+                    let esa = e.target.parentElement;
+                    let nodes = esa.childNodes;
+                    let anuncio = new anu(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
+                        nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
+                        nodes[7].textContent);
+                        CargarFormulario(frm,anuncio);
+                        eliminar.className = 'visible';
+                        eliminar.className = "btn btn-success";
+                        modificar.className = 'visible';
+                        modificar.className = "btn btn-primary";
+                        cancelar.className = 'visible';
+                        cancelar.className = "btn btn-danger";
+                        agregar.className = 'oculto';
+                }
+                else
+                {
+                    alert("Por cuestiones de seguridad destilda los checkboxs");
+                }
             });
-            manejadorCheckbox(dati,document.getElementById("seleccionado").value);
      }
+     manejadorCheckbox(dati,document.getElementById("seleccionado").value);
      if(Primera() == false)
      {
         let tip = cik();

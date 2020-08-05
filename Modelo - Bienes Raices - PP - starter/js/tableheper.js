@@ -1,13 +1,16 @@
 export function crearTabla(array) {
     let tabi = [];
+    let tabla;
     if(array != null)
     {
-        var tabla;
+        
         tabla = document.createElement('table');
+        tabla.setAttribute('class','table-success')
         tabla.setAttribute('border','5px solid');
         tabla.setAttribute('style','border-collapse: collapse');
-    
-        let cabecera = document.createElement('tr');
+      
+        var cabecera = document.createElement('tr');
+        
         cabecera.setAttribute("class","rojo");
         for(let atriubuto in array[0]){
             
@@ -32,7 +35,7 @@ export function crearTabla(array) {
             tabla.appendChild(fila);
         }
         
-        
+        console.log(tabla);
     }
     tabi = tabla;
     return tabi;

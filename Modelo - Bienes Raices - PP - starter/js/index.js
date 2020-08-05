@@ -1,4 +1,4 @@
-import {Listar2,alta,baja,modificacion} from "./xhr.js"
+import {Listar2,alta,baja,modificacion,cik} from "./xhr.js"
 import {crearTabla} from "./tableheper.js"
 import anu from "./datos.js"
 import {CargarSelector} from "./datos.js"
@@ -296,6 +296,36 @@ export function Realizar(seleccionados,datos)
         }
         document.getElementById("tabla").innerText = "";
         document.getElementById('tabla').appendChild(crearTabla(general));
+        let td = document.getElementsByTagName('td');   
+        for(let i=0;i<td.length;i++)
+        {
+            td[i].addEventListener('click',function(e){
+                let tin = cik()
+                console.log(tin);
+                if(tin == 7)
+                {
+                    console.log("asda");
+                    let esa = e.target.parentElement;
+                    let nodes = esa.childNodes;
+                    let anuncio = new anu(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
+                        nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
+                        nodes[7].textContent);
+                        CargarFormulario(frm,anuncio);
+                        eliminar.className = 'visible';
+                        eliminar.className = "btn btn-success";
+                        modificar.className = 'visible';
+                        modificar.className = "btn btn-primary";
+                        cancelar.className = 'visible';
+                        cancelar.className = "btn btn-danger";
+                        agregar.className = 'oculto';
+                }
+                else
+                {
+                    alert("Por cuestiones de seguridad destilda los checkboxs");
+                }
+            });
+     }
+
         
     
 }
@@ -413,6 +443,35 @@ export function FiltrarTransaccion(datos,filtrar)
          manejadorCheckbox(respuesta,"Venta");
          document.getElementById("tabla").innerText = "";
          document.getElementById('tabla').appendChild(crearTabla(respuesta));
+         let td = document.getElementsByTagName('td'); 
+         for(let i=0;i<td.length;i++)
+         {
+             td[i].addEventListener('click',function(e){
+                 let tin = cik()
+                 console.log(tin);
+                 if(tin == 7)
+                 {
+                     console.log("asda");
+                     let esa = e.target.parentElement;
+                     let nodes = esa.childNodes;
+                     let anuncio = new anu(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
+                         nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
+                         nodes[7].textContent);
+                         CargarFormulario(frm,anuncio);
+                         eliminar.className = 'visible';
+                         eliminar.className = "btn btn-success";
+                         modificar.className = 'visible';
+                         modificar.className = "btn btn-primary";
+                         cancelar.className = 'visible';
+                         cancelar.className = "btn btn-danger";
+                         agregar.className = 'oculto';
+                 }
+                 else
+                 {
+                     alert("Por cuestiones de seguridad destilda los checkboxs");
+                 }
+             });
+      }
          acumulador = respuesta.reduce((prev,actual)=>{
              return (Number(prev)+Number(actual.precio))}
              ,0);
@@ -446,6 +505,35 @@ export function FiltrarTransaccion(datos,filtrar)
          document.getElementById("tabla").innerText = "";
          manejadorCheckbox(respuesta,"Alquiler");
          document.getElementById('tabla').appendChild(crearTabla(respuesta));
+         let td = document.getElementsByTagName('td'); 
+         for(let i=0;i<td.length;i++)
+         {
+             td[i].addEventListener('click',function(e){
+                 let tin = cik()
+                 console.log(tin);
+                 if(tin == 7)
+                 {
+                     console.log("asda");
+                     let esa = e.target.parentElement;
+                     let nodes = esa.childNodes;
+                     let anuncio = new anu(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
+                         nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
+                         nodes[7].textContent);
+                         CargarFormulario(frm,anuncio);
+                         eliminar.className = 'visible';
+                         eliminar.className = "btn btn-success";
+                         modificar.className = 'visible';
+                         modificar.className = "btn btn-primary";
+                         cancelar.className = 'visible';
+                         cancelar.className = "btn btn-danger";
+                         agregar.className = 'oculto';
+                 }
+                 else
+                 {
+                     alert("Por cuestiones de seguridad destilda los checkboxs");
+                 }
+             });
+      }
          acumulador = respuesta.reduce((prev,actual)=>{
              return (Number(prev)+Number(actual.precio))}
              ,0);
@@ -472,12 +560,41 @@ export function FiltrarTransaccion(datos,filtrar)
             document.getElementById("PROMPOTENCIA").value = promPotencia;
     }
     else if(filtrar == "Permutar")
-    {
+    {   
         let flag = true;
         let respuesta = Array();
          respuesta = datos.filter(elemento => (elemento.transaccion == "Permutar"));
          document.getElementById("tabla").innerText = "";
          document.getElementById('tabla').appendChild(crearTabla(respuesta));
+         let td = document.getElementsByTagName('td'); 
+         for(let i=0;i<td.length;i++)
+         {
+             td[i].addEventListener('click',function(e){
+                 let tin = cik()
+                 console.log(tin);
+                 if(tin == 7)
+                 {
+                     console.log("asda");
+                     let esa = e.target.parentElement;
+                     let nodes = esa.childNodes;
+                     let anuncio = new anu(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
+                         nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
+                         nodes[7].textContent);
+                         CargarFormulario(frm,anuncio);
+                         eliminar.className = 'visible';
+                         eliminar.className = "btn btn-success";
+                         modificar.className = 'visible';
+                         modificar.className = "btn btn-primary";
+                         cancelar.className = 'visible';
+                         cancelar.className = "btn btn-danger";
+                         agregar.className = 'oculto';
+                 }
+                 else
+                 {
+                     alert("Por cuestiones de seguridad destilda los checkboxs");
+                 }
+             });
+      }
          manejadorCheckbox(respuesta,"Permutar");
          acumulador = respuesta.reduce((prev,actual)=>{
              return (Number(prev)+Number(actual.precio))}
