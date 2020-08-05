@@ -8,6 +8,7 @@ let modificar;
 export let agregar;
 let cancelar;
 let selector;
+var contadoress = 0;
 let bandera  = false;
 let contador1 = 0;
 export var  baa  =  false;
@@ -321,7 +322,11 @@ export function Realizar(seleccionados,datos)
                 }
                 else
                 {
-                    alert("Por cuestiones de seguridad destilda los checkboxs");
+                    if(contadoress==0)
+                    {
+                        alert("Por cuestiones de seguridad destilda TODOS los checkboxs")
+                       contadoress = contadoress +1;
+                    }
                 }
             });
      }
@@ -468,7 +473,12 @@ export function FiltrarTransaccion(datos,filtrar)
                  }
                  else
                  {
-                     alert("Por cuestiones de seguridad destilda los checkboxs");
+                    if(contadoress==0)
+                    {
+                        alert("Por cuestiones de seguridad destilda TODOS los checkboxs")
+                       contadoress = contadoress +1;
+                    }
+                     
                  }
              });
       }
@@ -530,7 +540,11 @@ export function FiltrarTransaccion(datos,filtrar)
                  }
                  else
                  {
-                     alert("Por cuestiones de seguridad destilda los checkboxs");
+                    if(contadoress==0)
+                    {
+                        alert("Por cuestiones de seguridad destilda TODOS los checkboxs")
+                       contadoress = contadoress +1;
+                    }
                  }
              });
       }
@@ -591,7 +605,11 @@ export function FiltrarTransaccion(datos,filtrar)
                  }
                  else
                  {
-                     alert("Por cuestiones de seguridad destilda los checkboxs");
+                    if(contadoress==0)
+                    {
+                        alert("Por cuestiones de seguridad destilda TODOS los checkboxs")
+                       contadoress = contadoress +1;
+                    }
                  }
              });
       }

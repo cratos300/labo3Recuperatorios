@@ -144,7 +144,11 @@ export function Listar2()
                 }
                 else
                 {
-                    alert("Por cuestiones de seguridad destilda los checkboxs");
+                    if(contadoress==0)
+                    {
+                       alert("Por cuestiones de seguridad destilda TODOS los checkboxs");
+                       contadoress = contadoress +1;
+                    }
                 }
             });
      }
