@@ -1,4 +1,4 @@
-import {Spinner,HabilitarCheckbox,HabiSelec,manejarINICIO,manejadorCheckbox,TraerBaseLocalStorage,GuardarBaseLocalStorage,DesabilitarCheckbox,FiltrarTransaccion,CargarFormulario,frm,agregar, DesaSelec, Primera,primero} from "./index.js"
+import {Spinner,HabilitarCheckbox,HabiSelec,manejarINICIO,manejadorCheckbox,TraerBaseLocalStorage,GuardarBaseLocalStorage,DesabilitarCheckbox,FiltrarTransaccion,CargarFormulario,frm,agregar, DesaSelec, Primera,primero,terere} from "./index.js"
 import {crearTabla} from "./tableheper.js"
 import anu from "./datos.js"
 export function alta(nuevoAnuncio) 
@@ -109,8 +109,10 @@ export function Listar2()
        
        if(dati != "[]" || datil != null )
        {
-            HabiSelec();
+        HabiSelec();
         document.getElementById('tabla').appendChild(crearTabla(dati));
+        chart(dati);
+        
         let td = document.getElementsByTagName('td');    
         HabilitarCheckbox();
         let referencia = document.getElementById("seleccionado");
@@ -144,11 +146,7 @@ export function Listar2()
                 }
                 else
                 {
-                    if(contadoress==0)
-                    {
-                       alert("Por cuestiones de seguridad destilda TODOS los checkboxs");
-                       contadoress = contadoress +1;
-                    }
+                        alert("Por cuestiones de seguridad destilda TODOS los checkboxs");
                 }
             });
      }
@@ -202,3 +200,63 @@ export function cik()
     return tep;
 
 }
+export function chart(dat) {
+    var dataVenta =  dat.filter(obj=>obj.transaccion == 'Venta');
+    var dataAlquiler = dat.filter(obj=>obj.transaccion == 'Alquiler');
+    var dataPermutar = dat.filter(obj=>obj.transaccion == 'Permutar');
+    var acumuladorVenta = 0;
+    var acumuladorAlquiler = 0;
+    var acumuladorPermutar = 0;
+    var torta =[];
+    var name = [];
+    dataVenta.forEach(element => {
+       acumuladorVenta = acumuladorVenta + parseInt(element.precio);
+       torta[0]=acumuladorVenta;
+    });
+    dataAlquiler.forEach(element => {
+        acumuladorAlquiler = acumuladorAlquiler + parseInt(element.precio);
+        torta[1]=acumuladorAlquiler;
+     });
+     dataPermutar.forEach(element => {
+        acumuladorPermutar = acumuladorPermutar + parseInt(element.precio);
+        torta[2]=acumuladorPermutar;
+     });
+     document.getElementById("myChart").innerText = "";
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Venta','Alquiler','Permutar'],
+            datasets: [{
+                label: 'Distibucion ventas / Alquileres / Permutar',
+                data: torta,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+  }
