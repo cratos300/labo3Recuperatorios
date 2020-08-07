@@ -1,6 +1,6 @@
-import {Listar2,alta,baja,modificacion,cik} from "./xhr.js"
+import {Listar2,alta,baja,modificacion,cik,chart} from "./xhr.js"
 import {crearTabla} from "./tableheper.js"
-import anu from "./datos.js"
+import DataAcess from "./datos.js"
 import {CargarSelector} from "./datos.js"
 export let frm;
 let eliminar;
@@ -113,7 +113,7 @@ export function crearAnuncio(frm) {
                 break;
         }
     }
-    let dar = new anu(id, titulo, transaccion, descripcion, precio, baños, estacionamiento, dormitorio);
+    let dar = new DataAcess(id, titulo, transaccion, descripcion, precio, baños, estacionamiento, dormitorio);
     return dar;
 
 }
@@ -308,7 +308,7 @@ export function Realizar(seleccionados,datos)
                     console.log("asda");
                     let esa = e.target.parentElement;
                     let nodes = esa.childNodes;
-                    let anuncio = new anu(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
+                    let anuncio = new DataAcess(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
                         nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
                         nodes[7].textContent);
                         CargarFormulario(frm,anuncio);
@@ -438,7 +438,7 @@ export function FiltrarTransaccion(datos,filtrar)
    let promPotencia;
    let acumuladorPotencia;
 
-    if(filtrar == "Venta")
+    if(filtrar == "Ventas")
     {   
         let flag = true;
         let respuesta = Array();
@@ -458,7 +458,7 @@ export function FiltrarTransaccion(datos,filtrar)
                      console.log("asda");
                      let esa = e.target.parentElement;
                      let nodes = esa.childNodes;
-                     let anuncio = new anu(nodes[0].textContent, nodes[1].textContent,nodes[2].textContent,
+                     let anuncio = new DataAcess(nodes[0].textContent, nodes[1].textContent,nodes[2].textContent,
                          nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
                          nodes[7].textContent);
                          CargarFormulario(frm,anuncio);
@@ -469,6 +469,21 @@ export function FiltrarTransaccion(datos,filtrar)
                          cancelar.className = 'visible';
                          cancelar.className = "btn btn-danger";
                          agregar.className = 'oculto';
+                         let daarr = localStorage.getItem("anuu");
+                         console.log("asdada");
+                         if(daarr == null)
+                         {
+                             daarr = Array();
+                         }
+                         console.log(daarr);
+                         let det = Array();
+                         if(daarr.length != 0)
+                         {
+                            det = JSON.parse(daarr);
+                         }
+                            det.push(anuncio.transaccion);
+                            localStorage.setItem("anuu", JSON.stringify(det));
+                            chart();
                  }
              });
       }
@@ -517,7 +532,7 @@ export function FiltrarTransaccion(datos,filtrar)
                      console.log("asda");
                      let esa = e.target.parentElement;
                      let nodes = esa.childNodes;
-                     let anuncio = new anu(nodes[0].textContent, nodes[1].textContent,nodes[2].textContent,
+                     let anuncio = new DataAcess(nodes[0].textContent, nodes[1].textContent,nodes[2].textContent,
                          nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
                          nodes[7].textContent);
                          CargarFormulario(frm,anuncio);
@@ -528,6 +543,23 @@ export function FiltrarTransaccion(datos,filtrar)
                          cancelar.className = 'visible';
                          cancelar.className = "btn btn-danger";
                          agregar.className = 'oculto';
+                          
+                         let daarr = localStorage.getItem("anuu");
+                         console.log("asdada");
+                         if(daarr == null)
+                         {
+                             daarr = Array();
+                         }
+                         console.log(daarr);
+                         let det = Array();
+                         if(daarr.length != 0)
+                         {
+                            det = JSON.parse(daarr);
+                         }
+                            det.push(anuncio.transaccion);
+                            localStorage.setItem("anuu", JSON.stringify(det));
+                            chart();
+
                  }
              });
       }
@@ -576,7 +608,7 @@ export function FiltrarTransaccion(datos,filtrar)
                      console.log("asda");
                      let esa = e.target.parentElement;
                      let nodes = esa.childNodes;
-                     let anuncio = new anu(nodes[0].textContent, nodes[1].textContent,nodes[2].textContent,
+                     let anuncio = new DataAcess(nodes[0].textContent, nodes[1].textContent,nodes[2].textContent,
                          nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
                          nodes[7].textContent);
                          CargarFormulario(frm,anuncio);
@@ -587,6 +619,21 @@ export function FiltrarTransaccion(datos,filtrar)
                          cancelar.className = 'visible';
                          cancelar.className = "btn btn-danger";
                          agregar.className = 'oculto';
+                         let daarr = localStorage.getItem("anuu");
+                         console.log("asdada");
+                         if(daarr == null)
+                         {
+                             daarr = Array();
+                         }
+                         console.log(daarr);
+                         let det = Array();
+                         if(daarr.length != 0)
+                         {
+                            det = JSON.parse(daarr);
+                         }
+                            det.push(anuncio.transaccion);
+                            localStorage.setItem("anuu", JSON.stringify(det));
+                            chart();
                  }
              });
       }
@@ -632,7 +679,7 @@ export function FiltrarTransaccion(datos,filtrar)
                      console.log("asda");
                      let esa = e.target.parentElement;
                      let nodes = esa.childNodes;
-                     let anuncio = new anu(nodes[0].textContent, nodes[1].textContent,nodes[2].textContent,
+                     let anuncio = new DataAcess(nodes[0].textContent, nodes[1].textContent,nodes[2].textContent,
                          nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
                          nodes[7].textContent);
                          CargarFormulario(frm,anuncio);
@@ -643,6 +690,21 @@ export function FiltrarTransaccion(datos,filtrar)
                          cancelar.className = 'visible';
                          cancelar.className = "btn btn-danger";
                          agregar.className = 'oculto';
+                         let daarr = localStorage.getItem("anuu");
+                         console.log("asdada");
+                         if(daarr == null)
+                         {
+                             daarr = Array();
+                         }
+                         console.log(daarr);
+                         let det = Array();
+                         if(daarr.length != 0)
+                         {
+                            det = JSON.parse(daarr);
+                         }
+                            det.push(anuncio.transaccion);
+                            localStorage.setItem("anuu", JSON.stringify(det));
+                            chart();
                  }
              });
       }

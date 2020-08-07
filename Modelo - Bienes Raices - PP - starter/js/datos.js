@@ -1,4 +1,4 @@
-export default class anu {
+export default class DataAcess {
     constructor(id, titulo, transaccion, descripcion, precio, puertas, kms, potencia) {
         this.id = id;
         this.titulo = titulo;
@@ -14,7 +14,7 @@ var enumTransacciones;
 (function (enumTransacciones) {
     enumTransacciones["Todos"] = "Todos";
     enumTransacciones["Alquiler"] = "Alquiler";
-    enumTransacciones["Venta"] = "Venta";
+    enumTransacciones["Ventas"] = "Venta";
     enumTransacciones["Permutar"] = "Permutar";
 })(enumTransacciones || (enumTransacciones = {}));
 export function CargarSelector() {

@@ -1,4 +1,4 @@
-export default class anu {
+export default class DataAcess {
     public id:string;
     public titulo:string;
     public transaccion:string;

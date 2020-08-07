@@ -1,6 +1,7 @@
 import {Spinner,HabilitarCheckbox,HabiSelec,manejarINICIO,manejadorCheckbox,TraerBaseLocalStorage,GuardarBaseLocalStorage,DesabilitarCheckbox,FiltrarTransaccion,CargarFormulario,frm,agregar, DesaSelec, Primera,primero,terere} from "./index.js"
 import {crearTabla} from "./tableheper.js"
-import anu from "./datos.js"
+import DataAcess from "./datos.js"
+
 export function alta(nuevoAnuncio) 
 { 
     let contador1 = 0;
@@ -130,7 +131,7 @@ export function Listar2()
                 {
                     let esa = e.target.parentElement;
                     let nodes = esa.childNodes;
-                    let anuncio = new anu(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
+                    let anuncio = new DataAcess(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
                         nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
                         nodes[7].textContent);
                         CargarFormulario(frm,anuncio);
