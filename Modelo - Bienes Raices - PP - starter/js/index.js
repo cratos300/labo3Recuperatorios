@@ -621,6 +621,31 @@ export function FiltrarTransaccion(datos,filtrar)
         manejadorCheckbox(todoss,"Venta");
         document.getElementById("tabla").innerText = "";
         document.getElementById('tabla').appendChild(crearTabla(datos));
+        let td = document.getElementsByTagName('td'); 
+         for(let i=0;i<td.length;i++)
+         {
+             td[i].addEventListener('click',function(e){
+                 let tin = cik()
+                 console.log(tin);
+                 if(tin == 7)
+                 {
+                     console.log("asda");
+                     let esa = e.target.parentElement;
+                     let nodes = esa.childNodes;
+                     let anuncio = new anu(nodes[0].textContent, nodes[1].textContent,nodes[2].textContent,
+                         nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent,
+                         nodes[7].textContent);
+                         CargarFormulario(frm,anuncio);
+                         eliminar.className = 'visible';
+                         eliminar.className = "btn btn-success";
+                         modificar.className = 'visible';
+                         modificar.className = "btn btn-primary";
+                         cancelar.className = 'visible';
+                         cancelar.className = "btn btn-danger";
+                         agregar.className = 'oculto';
+                 }
+             });
+      }
         document.getElementById("promedio").value = "N/A";
     }
     return todoss;

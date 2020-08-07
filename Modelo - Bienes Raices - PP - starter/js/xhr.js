@@ -111,7 +111,6 @@ export function Listar2()
        {
         HabiSelec();
         document.getElementById('tabla').appendChild(crearTabla(dati));
-        chart(dati);
         
         let td = document.getElementsByTagName('td');    
         HabilitarCheckbox();
@@ -129,7 +128,6 @@ export function Listar2()
                 console.log(tin);
                 if(tin == 7)
                 {
-                    console.log("asda");
                     let esa = e.target.parentElement;
                     let nodes = esa.childNodes;
                     let anuncio = new anu(nodes[0].textContent, nodes[2].textContent,nodes[1].textContent,
@@ -143,6 +141,23 @@ export function Listar2()
                         cancelar.className = 'visible';
                         cancelar.className = "btn btn-danger";
                         agregar.className = 'oculto';
+                        let resultado;
+                        
+                         let daarr = localStorage.getItem("anuu");
+                         console.log("asdada");
+                         if(daarr == null)
+                         {
+                             daarr = Array();
+                         }
+                         console.log(daarr);
+                         let det = Array();
+                         if(daarr.length != 0)
+                         {
+                            det = JSON.parse(daarr);
+                         }
+                            det.push(anuncio.transaccion);
+                            localStorage.setItem("anuu", JSON.stringify(det));
+                            chart();
                 }
                 else
                 {
@@ -200,27 +215,56 @@ export function cik()
     return tep;
 
 }
-export function chart(dat) {
-    var dataVenta =  dat.filter(obj=>obj.transaccion == 'Venta');
-    var dataAlquiler = dat.filter(obj=>obj.transaccion == 'Alquiler');
-    var dataPermutar = dat.filter(obj=>obj.transaccion == 'Permutar');
+export function chart() {
+    let contVentas = 0;
+    let contAlquiler = 0;
+    let contPermutar = 0;
     var acumuladorVenta = 0;
     var acumuladorAlquiler = 0;
     var acumuladorPermutar = 0;
     var torta =[];
     var name = [];
-    dataVenta.forEach(element => {
-       acumuladorVenta = acumuladorVenta + parseInt(element.precio);
-       torta[0]=acumuladorVenta;
-    });
-    dataAlquiler.forEach(element => {
-        acumuladorAlquiler = acumuladorAlquiler + parseInt(element.precio);
-        torta[1]=acumuladorAlquiler;
-     });
-     dataPermutar.forEach(element => {
-        acumuladorPermutar = acumuladorPermutar + parseInt(element.precio);
-        torta[2]=acumuladorPermutar;
-     });
+    let dat = localStorage.getItem("anuu");
+    dat = JSON.parse(dat);
+   console.log(dat.length);
+    //contVentas = dat.reduce()
+    // var dataVenta =  dat.filter(obj=>obj.transaccion == 'Venta');
+    // var dataAlquiler = dat.filter(obj=>obj.transaccion == 'Alquiler');
+    // var dataPermutar = dat.filter(obj=>obj.transaccion == 'Permutar');
+    for(let i = 0; i <dat.length;i++)
+    {
+       
+        if(dat[i] == "Venta")
+        {
+            contVentas = contVentas +1;
+        }
+        else if(dat[i] == "Alquiler")
+        {
+            contAlquiler = contAlquiler +1;
+        }
+        else if(dat[i] == "Permutar")
+        {
+            contPermutar = contPermutar +1;
+        }
+    }
+    console.log(contVentas);
+    console.log(contAlquiler);
+    console.log(contPermutar);
+    torta[0] = contVentas;
+    torta[1] = contAlquiler;
+    torta[2] = contPermutar;
+    // dataVenta.forEach(element => {
+    //    acumuladorVenta = acumuladorVenta + parseInt(element.precio);
+    //    torta[0]=acumuladorVenta;
+    // });
+    // dataAlquiler.forEach(element => {
+    //     acumuladorAlquiler = acumuladorAlquiler + parseInt(element.precio);
+    //     torta[1]=acumuladorAlquiler;
+    //  });
+    //  dataPermutar.forEach(element => {
+    //     acumuladorPermutar = acumuladorPermutar + parseInt(element.precio);
+    //     torta[2]=acumuladorPermutar;
+    //  });
      document.getElementById("myChart").innerText = "";
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
